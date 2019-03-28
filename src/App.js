@@ -1,11 +1,13 @@
-import React, { Component } from "react";
-import "./App.css";
+import React from "react";
+import OmdbContainer from "./components/OmdbContainer";
 import "./mdb.css";
+import "./App.css";
 
-class App extends Component {
-  render() {
-    return <div />;
-  }
+function App() {
+  return (
+    <div>
+      <OmdbContainer />
+    </div>
+  );
 }
-
 export default App;
