@@ -10,17 +10,21 @@ import API from "../utils/API";
 class OmdbContainer extends Component {
   state = {
     result: {},
-    search: ""
+    search: "",
+    userServices: ["iTunes", "Amazon Prime"]
   };
 
-  // When this component mounts, search for the movie "The Matrix"
-  componentDidMount() {
-    this.searchMovies("");
-  }
+  // componentDidMount() {
+  //   this.utellySearch("");
+  // }
 
-  searchMovies = query => {
-    API.search(query)
-      .then(res => this.setState({ result: res.data }))
+  movieSearch = (query, services) => {
+    API.utellySearch(query, services)
+      .then(res => {
+        API.omdbSearch(res).then(movie =>
+          this.setState({ result: movie.data })
+        );
+      })
       .catch(err => console.log(err));
   };
 
@@ -35,7 +39,7 @@ class OmdbContainer extends Component {
   // When the form is submitted, search the OMDB API for the value of `this.state.search`
   handleFormSubmit = event => {
     event.preventDefault();
-    this.searchMovies(this.state.search);
+    this.movieSearch(this.state.search, this.state.userServices);
   };
 
   render() {
