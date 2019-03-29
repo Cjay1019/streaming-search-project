@@ -13,17 +13,16 @@ class OmdbContainer extends Component {
     search: ""
   };
 
-  // When this component mounts, search for the movie "The Matrix"
   componentDidMount() {
     this.searchMovies("");
   }
-
+  // search for movies once input is entered
   searchMovies = query => {
     API.search(query)
       .then(res => this.setState({ result: res.data }))
       .catch(err => console.log(err));
   };
-
+  // handle input for the ui
   handleInputChange = event => {
     const value = event.target.value;
     const name = event.target.name;
@@ -32,12 +31,11 @@ class OmdbContainer extends Component {
     });
   };
 
-  // When the form is submitted, search the OMDB API for the value of `this.state.search`
   handleFormSubmit = event => {
     event.preventDefault();
     this.searchMovies(this.state.search);
   };
-
+  // setting up omdb container with all the components made card, col, row, etc
   render() {
     return (
       <Container>

@@ -1,4 +1,5 @@
 import React from "react";
+// creates the card body
 
 function Card(props) {
   return (

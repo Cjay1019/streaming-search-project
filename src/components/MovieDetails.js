@@ -1,5 +1,5 @@
 import React from "react";
-
+// renders movie images,info
 function MovieDetails(props) {
   return (
     <div className="text-center">
