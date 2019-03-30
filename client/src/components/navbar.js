@@ -1,4 +1,5 @@
 import React from "react";
+import App from "../App.css";
 
 class Navbar extends React.Component {
   signup() {
