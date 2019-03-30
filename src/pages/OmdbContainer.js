@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Container from "./Container";
-import Row from "./Row";
-import Col from "./Col";
-import Card from "./Card";
-import Checks from "./Checks";
-import SearchForm from "./SearchForm";
-import MovieDetails from "./MovieDetails";
-import API from "../utils/API";
+import Container from "./../components/Container";
+import Row from "./../components/Row";
+import Col from "./../components/Col";
+import Card from "./../components/Card";
+import Checks from "./../components/Checks";
+import SearchForm from "./../components/SearchForm";
+import MovieDetails from "./../components/MovieDetails";
+import API from "./../utils/API";
 
 class OmdbContainer extends Component {
   state = {
@@ -15,7 +15,7 @@ class OmdbContainer extends Component {
     userServices: []
   };
 
-movieSearch = (query, services) => {
+  movieSearch = (query, services) => {
     API.utellySearch(query, services)
       .then(res => {
         API.omdbSearch(res).then(movie => {
@@ -40,7 +40,6 @@ movieSearch = (query, services) => {
       [name]: value
     });
   };
-
 
   handleChecksInput = event => {
     const value = event.target.checked;
