@@ -6,6 +6,9 @@ import SignIn from "./pages/SignIn";
 import LogOut from "./pages/Logout";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+
+import Navbar from "./components/navbar";
+import Footer from "./components/Footer";
 import "./mdb.css";
 import "./App.css";
 class App extends Component {
@@ -29,19 +32,23 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            component={() => <OmdbContainer user={this.state.user} />}
-          />
-          <Route exact path="/signin" component={SignIn} />
-          <Route exact path="/logout" component={LogOut} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/profile" component={Profile} />
-        </Switch>
-      </Router>
+      <div className="backgroundColor elegant-color ">
+        <Navbar />
+        <Router>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={() => <OmdbContainer user={this.state.user} />}
+            />
+            <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/logout" component={LogOut} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/profile" component={Profile} />
+          </Switch>
+        </Router>
+        <Footer />
+      </div>
     );
   }
 }
