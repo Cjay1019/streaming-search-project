@@ -3,6 +3,7 @@ import Container from "./Container";
 import Row from "./Row";
 import Col from "./Col";
 import Card from "./Card";
+import Checks from "./Checks";
 import SearchForm from "./SearchForm";
 import MovieDetails from "./MovieDetails";
 import API from "../utils/API";
@@ -10,16 +11,25 @@ import API from "../utils/API";
 class OmdbContainer extends Component {
   state = {
     result: {},
-    search: ""
+    search: "",
+    userServices: []
   };
 
-  componentDidMount() {
-    this.searchMovies("");
-  }
-  // search for movies once input is entered
-  searchMovies = query => {
-    API.search(query)
-      .then(res => this.setState({ result: res.data }))
+movieSearch = (query, services) => {
+    API.utellySearch(query, services)
+      .then(res => {
+        API.omdbSearch(res).then(movie => {
+          console.log(movie);
+          if (movie.data.Title === "Undefined") {
+            alert(
+              "Movie is either not found, or not available on your services"
+            );
+          } else {
+            this.setState({ result: movie.data });
+          }
+        });
+      })
+
       .catch(err => console.log(err));
   };
   // handle input for the ui
@@ -31,9 +41,22 @@ class OmdbContainer extends Component {
     });
   };
 
+
+  handleChecksInput = event => {
+    const value = event.target.checked;
+    const name = event.target.name;
+    this.setState({
+      userServices: value
+        ? this.state.userServices.concat(name)
+        : this.state.userServices.filter(e => e !== name)
+    });
+  };
+
+  // When the form is submitted, search the OMDB API for the value of `this.state.search`
+
   handleFormSubmit = event => {
     event.preventDefault();
-    this.searchMovies(this.state.search);
+    this.movieSearch(this.state.search, this.state.userServices);
   };
   // setting up omdb container with all the components made card, col, row, etc
   render() {
@@ -42,6 +65,7 @@ class OmdbContainer extends Component {
         <Row>
           <Col size="md-8">
             <Card heading="Search">
+              <Checks handleChecksInput={this.handleChecksInput} />
               <SearchForm
                 value={this.state.search}
                 handleInputChange={this.handleInputChange}
