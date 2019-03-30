@@ -3,6 +3,7 @@ import Container from "./Container";
 import Row from "./Row";
 import Col from "./Col";
 import Card from "./Card";
+import Checks from "./Checks";
 import SearchForm from "./SearchForm";
 import MovieDetails from "./MovieDetails";
 import API from "../utils/API";
@@ -11,7 +12,7 @@ class OmdbContainer extends Component {
   state = {
     result: {},
     search: "",
-    userServices: ["iTunes", "Amazon Prime"]
+    userServices: []
   };
 
   // componentDidMount() {
@@ -21,9 +22,16 @@ class OmdbContainer extends Component {
   movieSearch = (query, services) => {
     API.utellySearch(query, services)
       .then(res => {
-        API.omdbSearch(res).then(movie =>
-          this.setState({ result: movie.data })
-        );
+        API.omdbSearch(res).then(movie => {
+          console.log(movie);
+          if (movie.data.Title === "Undefined") {
+            alert(
+              "Movie is either not found, or not available on your services"
+            );
+          } else {
+            this.setState({ result: movie.data });
+          }
+        });
       })
       .catch(err => console.log(err));
   };
@@ -33,6 +41,16 @@ class OmdbContainer extends Component {
     const name = event.target.name;
     this.setState({
       [name]: value
+    });
+  };
+
+  handleChecksInput = event => {
+    const value = event.target.checked;
+    const name = event.target.name;
+    this.setState({
+      userServices: value
+        ? this.state.userServices.concat(name)
+        : this.state.userServices.filter(e => e !== name)
     });
   };
 
@@ -48,6 +66,7 @@ class OmdbContainer extends Component {
         <Row>
           <Col size="md-8">
             <Card heading="Search">
+              <Checks handleChecksInput={this.handleChecksInput} />
               <SearchForm
                 value={this.state.search}
                 handleInputChange={this.handleInputChange}
