@@ -16,11 +16,12 @@ if (process.env.NODE_ENV === "production") {
 
 // Send every other request to the React app
 // Define any API routes before this runs
+
+require("./routes/index.js")(app);
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
-
-app.use(require("./routes.js"));
 
 //Database
 //if deployed, use the deployed database, otherwise use local database
