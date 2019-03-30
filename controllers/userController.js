@@ -1,14 +1,14 @@
-import db from "../models/index";
+const db = require("../models/index");
 
 module.exports = {
-  // Find all Userss, sort them by date, send them back to the user
-  findAll: function(req, res) {
-    db.Users.find(req.query)
-      .sort({ date: -1 })
-      .then(function(dbUsers) {
-        res.json(dbUsers);
-      });
+  // Find User, sort them by date, send them back to the user
+  find: function(req, res) {
+    db.Users.find({ firebaseId: req.params.id }).then(function(dbUsers) {
+      res.json(dbUsers);
+    });
   },
+
+  // get user id from firebase
 
   //   create new user
   create: function(req, res) {
