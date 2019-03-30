@@ -15,11 +15,7 @@ class OmdbContainer extends Component {
     userServices: []
   };
 
-  // componentDidMount() {
-  //   this.utellySearch("");
-  // }
-
-  movieSearch = (query, services) => {
+movieSearch = (query, services) => {
     API.utellySearch(query, services)
       .then(res => {
         API.omdbSearch(res).then(movie => {
@@ -33,9 +29,10 @@ class OmdbContainer extends Component {
           }
         });
       })
+
       .catch(err => console.log(err));
   };
-
+  // handle input for the ui
   handleInputChange = event => {
     const value = event.target.value;
     const name = event.target.name;
@@ -43,6 +40,7 @@ class OmdbContainer extends Component {
       [name]: value
     });
   };
+
 
   handleChecksInput = event => {
     const value = event.target.checked;
@@ -55,11 +53,12 @@ class OmdbContainer extends Component {
   };
 
   // When the form is submitted, search the OMDB API for the value of `this.state.search`
+
   handleFormSubmit = event => {
     event.preventDefault();
     this.movieSearch(this.state.search, this.state.userServices);
   };
-
+  // setting up omdb container with all the components made card, col, row, etc
   render() {
     return (
       <Container>

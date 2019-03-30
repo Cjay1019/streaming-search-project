@@ -1,3 +1,4 @@
+// omdb api with key and using axios
 import axios from "axios";
 const BASEURL = "https://www.omdbapi.com/?t=";
 const omdbKEY = "&apikey=b31c3ab9";
