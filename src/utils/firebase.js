@@ -1,6 +1,5 @@
 import firebase from "firebase";
 
-// Initialize Firebase (use your info)
 var config = {
   apiKey: "AIzaSyCaarLYFJU90SSt13ajCQ2wzlJgdF36u7I",
   authDomain: "streaming-search-cfc13.firebaseapp.com",

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
+import auth from "../utils/firebase";
 
 class SignIn extends Component {
   state = {
@@ -7,7 +8,29 @@ class SignIn extends Component {
     password: ""
   };
 
-  signIn = (user, pass) => {};
+  signIn = () => {
+    auth
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(res => {
+        this.setState({
+          errors: null
+        });
+      })
+      .catch(error => {
+        switch (error.code) {
+          case "auth/wrong-password":
+            alert(
+              "Wrong password. Try again or click Forgot password to reset it."
+            );
+            break;
+          case "auth/user-not-found":
+            alert("Couldn't find your account.");
+            break;
+          default:
+            alert("Something went wrong. Please try again.");
+        }
+      });
+  };
 
   handleInputChange = event => {
     const value = event.target.value;
@@ -19,46 +42,47 @@ class SignIn extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    this.signIn(this.state.username, this.state.password);
+    this.signIn();
+    this.setState({ password: "" });
   };
 
   render() {
     return (
       <Container>
-        <form class="text-center border border-light p-5">
-          <p class="h4 mb-4">Sign in</p>
+        <form className="text-center border border-light p-5">
+          <p className="h4 mb-4">Sign in</p>
 
           <input
             onChange={this.handleInputChange}
-            value={this.value}
+            value={this.state.email}
             name="email"
             type="email"
             id="defaultLoginFormEmail"
-            class="form-control mb-4"
+            className="form-control mb-4"
             placeholder="E-mail"
           />
 
           <input
             onChange={this.handleInputChange}
-            value={this.value}
+            value={this.state.password}
             name="password"
             type="password"
             id="defaultLoginFormPassword"
-            class="form-control mb-4"
+            className="form-control mb-4"
             placeholder="Password"
           />
 
-          <div class="d-flex justify-content-around">
+          <div className="d-flex justify-content-around">
             <div>
-              <div class="custom-control custom-checkbox">
+              <div className="custom-control custom-checkbox">
                 <input
                   type="checkbox"
-                  class="custom-control-input"
+                  className="custom-control-input"
                   id="defaultLoginFormRemember"
                 />
                 <label
-                  class="custom-control-label"
-                  for="defaultLoginFormRemember"
+                  className="custom-control-label"
+                  htmlFor="defaultLoginFormRemember"
                 >
                   Remember me
                 </label>
@@ -71,7 +95,7 @@ class SignIn extends Component {
 
           <button
             onClick={this.handleFormSubmit}
-            class="btn btn-info btn-block my-4"
+            className="btn btn-info btn-block my-4"
             type="submit"
           >
             Sign in
@@ -79,7 +103,7 @@ class SignIn extends Component {
 
           <p>
             Not a member?
-            <a href="">Register</a>
+            <a href="/register"> Register</a>
           </p>
         </form>
       </Container>
