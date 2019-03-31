@@ -12,9 +12,7 @@ class SignIn extends Component {
     auth
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(res => {
-        this.setState({
-          errors: null
-        });
+        console.log(res.user.uid);
       })
       .catch(error => {
         switch (error.code) {
