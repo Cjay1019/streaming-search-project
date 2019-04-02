@@ -8,17 +8,34 @@ import SearchForm from "./../components/SearchForm";
 import MovieDetails from "./../components/MovieDetails";
 import API from "./../utils/API";
 
+import { returnObject } from "./../utils/API";
+
 class OmdbContainer extends Component {
   state = {
     result: {},
     search: "",
-    userServices: []
+    userServices: [],
+    sourceURL: []
   };
 
   movieSearch = (query, services) => {
     API.utellySearch(query, services)
       .then(res => {
-        API.omdbSearch(res).then(movie => {
+        /*
+        console.log(res);
+        
+        let urlArray = [];
+        let locations = res.data.results[0].locations;
+        console.log(locations);
+        for (let i = 0; i < locations.length; i++) {
+          if (services.includes(locations[i])) {
+            urlArray.push(locations[i].url);
+          }
+        }
+        this.setState({ sourceURL: urlArray });
+*/
+        console.log(res);
+        API.omdbSearch(res.title).then(movie => {
           console.log(movie);
           if (movie.data.Title === "Undefined") {
             alert(
@@ -81,6 +98,8 @@ class OmdbContainer extends Component {
                   director={this.state.result.Director}
                   genre={this.state.result.Genre}
                   released={this.state.result.Released}
+                  urlArray={returnObject.urlArray}
+                  sourceName={returnObject.sourceName}
                 />
               ) : (
                 <h3>No Results to Display</h3>
