@@ -3,7 +3,7 @@ import axios from "axios";
 const BASEURL = "https://www.omdbapi.com/?t=";
 const omdbKEY = "&apikey=b31c3ab9";
 const utellyKEY = "84d184dfd2msh6b5924af4ec8de5p14dfb2jsn75fb3b8d9b09";
-
+var returnObject = {};
 export default {
   omdbSearch: function(query) {
     return axios.get(BASEURL + query + omdbKEY);
@@ -17,13 +17,29 @@ export default {
         { headers: { "X-RapidAPI-Key": utellyKEY } }
       )
       .then(function(data) {
+        //var returnObject = {};
+        returnObject.urlArray = [];
+        returnObject.sourceName = [];
         console.log(data);
         let locations = data.data.results[0].locations;
+
         for (let i = 0; i < locations.length; i++) {
           if (services.includes(locations[i].display_name)) {
-            return query;
+            returnObject.urlArray.push(locations[i].url);
+            returnObject.sourceName.push(locations[i].display_name);
+            console.log(returnObject.urlArray);
+          }
+        }
+
+        for (let i = 0; i < locations.length; i++) {
+          if (services.includes(locations[i].display_name)) {
+            returnObject.title = query;
+            console.log(returnObject);
+            return returnObject;
           }
         }
       });
   }
 };
+
+export { returnObject };
