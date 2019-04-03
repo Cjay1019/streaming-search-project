@@ -39,6 +39,8 @@ class Register extends Component {
     this.createAccount();
   };
 
+  clickSignIn = () => this.props.renderSignReg();
+
   render() {
     return (
       <Container>
@@ -97,6 +99,12 @@ class Register extends Component {
           >
             Register
           </button>
+          <p>
+            Already a member?
+            <a href="#" onClick={this.clickSignIn}>
+              Sign in
+            </a>
+          </p>
         </form>
       </Container>
     );

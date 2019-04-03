@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import auth from "../utils/firebase";
+import { MDBAlert } from "mdbreact";
 
 class SignIn extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    error: null
   };
 
   signIn = () => {
@@ -13,19 +15,27 @@ class SignIn extends Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(res => {
         console.log(res.user.uid);
+        this.setState({
+          error: null
+        });
       })
       .catch(error => {
         switch (error.code) {
           case "auth/wrong-password":
-            alert(
-              "Wrong password. Try again or click Forgot password to reset it."
-            );
+            this.setState({
+              error:
+                "Wrong password. Try again or click Forgot password to reset it."
+            });
             break;
           case "auth/user-not-found":
-            alert("Couldn't find your account.");
+            this.setState({
+              error: "Couldn't find your account."
+            });
             break;
           default:
-            alert("Something went wrong. Please try again.");
+            this.setState({
+              error: "Something went wrong. Please try again."
+            });
         }
       });
   };
@@ -43,6 +53,8 @@ class SignIn extends Component {
     this.signIn();
     this.setState({ password: "" });
   };
+
+  clickReg = () => this.props.renderSignReg();
 
   render() {
     return (
@@ -101,9 +113,14 @@ class SignIn extends Component {
 
           <p>
             Not a member?
-            <a href="/register"> Register</a>
+            <a href="#" onClick={this.clickReg}>
+              Register
+            </a>
           </p>
         </form>
+        {this.state.error && (
+          <MDBAlert color="danger">{this.state.error}</MDBAlert>
+        )}
       </Container>
     );
   }

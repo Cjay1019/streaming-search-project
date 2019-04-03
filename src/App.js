@@ -31,7 +31,11 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={OmdbContainer} />
+          <Route
+            exact
+            path="/"
+            component={() => <OmdbContainer user={this.state.user} />}
+          />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/logout" component={LogOut} />
           <Route exact path="/register" component={Register} />
