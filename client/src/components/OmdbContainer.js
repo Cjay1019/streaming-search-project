@@ -15,7 +15,7 @@ class OmdbContainer extends Component {
     userServices: []
   };
 
-movieSearch = (query, services) => {
+  movieSearch = (query, services) => {
     API.utellySearch(query, services)
       .then(res => {
         API.omdbSearch(res).then(movie => {
@@ -41,7 +41,6 @@ movieSearch = (query, services) => {
     });
   };
 
-
   handleChecksInput = event => {
     const value = event.target.checked;
     const name = event.target.name;
@@ -63,7 +62,7 @@ movieSearch = (query, services) => {
     return (
       <Container>
         <Row>
-          <Col size="md-8">
+          <Col size="md-12">
             <Card heading="Search">
               <Checks handleChecksInput={this.handleChecksInput} />
               <SearchForm
@@ -73,7 +72,7 @@ movieSearch = (query, services) => {
               />
             </Card>
           </Col>
-          <Col size="md-8">
+          <Col size="md-12">
             <Card heading={this.state.result.Title || "Search for a Movie"}>
               {this.state.result.Title ? (
                 <MovieDetails
