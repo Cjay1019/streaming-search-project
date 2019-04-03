@@ -12,18 +12,21 @@ import Profile from "./Profile";
 import Register from "./Register";
 import API from "./../utils/API";
 
+import { returnObject } from "./../utils/API";
+
 class OmdbContainer extends Component {
   state = {
     result: {},
     search: "",
     userServices: [],
-    register: false
+    register: false,
   };
 
   movieSearch = (query, services) => {
     API.utellySearch(query, services)
       .then(res => {
-        API.omdbSearch(res).then(movie => {
+        console.log(res);
+        API.omdbSearch(res.title).then(movie => {
           console.log(movie);
           if (movie.data.Title === "Undefined") {
             alert(
@@ -118,6 +121,8 @@ class OmdbContainer extends Component {
                   director={this.state.result.Director}
                   genre={this.state.result.Genre}
                   released={this.state.result.Released}
+                  urlArray={returnObject.urlArray}
+                  sourceName={returnObject.sourceName}
                 />
               ) : (
                 <h3>No Results to Display</h3>
