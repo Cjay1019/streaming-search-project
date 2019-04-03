@@ -6,6 +6,10 @@ import Card from "./../components/Card";
 import Checks from "./../components/Checks";
 import SearchForm from "./../components/SearchForm";
 import MovieDetails from "./../components/MovieDetails";
+import Modal from "../components/Modal";
+import SignIn from "./SignIn";
+import Profile from "./Profile";
+import Register from "./Register";
 import API from "./../utils/API";
 
 import { returnObject } from "./../utils/API";
@@ -15,25 +19,12 @@ class OmdbContainer extends Component {
     result: {},
     search: "",
     userServices: [],
-    sourceURL: []
+    register: false,
   };
 
   movieSearch = (query, services) => {
     API.utellySearch(query, services)
       .then(res => {
-        /*
-        console.log(res);
-        
-        let urlArray = [];
-        let locations = res.data.results[0].locations;
-        console.log(locations);
-        for (let i = 0; i < locations.length; i++) {
-          if (services.includes(locations[i])) {
-            urlArray.push(locations[i].url);
-          }
-        }
-        this.setState({ sourceURL: urlArray });
-*/
         console.log(res);
         API.omdbSearch(res.title).then(movie => {
           console.log(movie);
@@ -61,6 +52,7 @@ class OmdbContainer extends Component {
   handleChecksInput = event => {
     const value = event.target.checked;
     const name = event.target.name;
+    console.log(name, value);
     this.setState({
       userServices: value
         ? this.state.userServices.concat(name)
@@ -74,6 +66,34 @@ class OmdbContainer extends Component {
     event.preventDefault();
     this.movieSearch(this.state.search, this.state.userServices);
   };
+
+  renderSignReg = () => {
+    this.setState({
+      register: !this.state.register
+    });
+  };
+
+  modalClose = () => {
+    this.setState({
+      register: false
+    });
+  };
+
+  renderBtn = () => {
+    if (this.props.user) {
+      return (
+        <Profile
+          handleChecksInput={this.handleChecksInput}
+          userServices={this.state.userServices}
+        />
+      );
+    }
+    return this.state.register ? (
+      <Register renderSignReg={this.renderSignReg} />
+    ) : (
+      <SignIn renderSignReg={this.renderSignReg} />
+    );
+  };
   // setting up omdb container with all the components made card, col, row, etc
   render() {
     return (
@@ -81,7 +101,10 @@ class OmdbContainer extends Component {
         <Row>
           <Col size="md-8">
             <Card heading="Search">
-              <Checks handleChecksInput={this.handleChecksInput} />
+              <Checks
+                handleChecksInput={this.handleChecksInput}
+                userServices={this.state.userServices}
+              />
               <SearchForm
                 value={this.state.search}
                 handleInputChange={this.handleInputChange}
@@ -104,6 +127,12 @@ class OmdbContainer extends Component {
               ) : (
                 <h3>No Results to Display</h3>
               )}
+              <Modal
+                modalClose={this.modalClose}
+                btnName={this.props.user ? "Profile" : "Sign In"}
+              >
+                {this.renderBtn()}
+              </Modal>
             </Card>
           </Col>
         </Row>

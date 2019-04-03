@@ -1,11 +1,31 @@
-import React from "react";
+import React, { Component } from "react";
+import Container from "../components/Container";
+import Checks from "../components/Checks";
+import auth from "../utils/firebase";
 
-function Profile() {
-  return (
-    <div>
-      <h2>My Profile</h2>
-    </div>
-  );
+class Profile extends Component {
+  signOut = () => {
+    auth.signOut();
+  };
+
+  render() {
+    return (
+      <Container>
+        <h1>Preferences</h1>
+        <Checks
+          userServices={this.props.userServices}
+          handleChecksInput={this.props.handleChecksInput}
+        />
+        <button
+          onClick={this.signOut}
+          className="btn btn-info btn-block my-4"
+          type="submit"
+        >
+          Sign out
+        </button>
+      </Container>
+    );
+  }
 }
 
 export default Profile;
