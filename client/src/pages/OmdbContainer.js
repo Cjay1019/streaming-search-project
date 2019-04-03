@@ -99,7 +99,7 @@ class OmdbContainer extends Component {
     return (
       <Container>
         <Row>
-          <Col size="md-8">
+          <Col size="md-12">
             <Card heading="Search">
               <Checks
                 handleChecksInput={this.handleChecksInput}
@@ -112,7 +112,7 @@ class OmdbContainer extends Component {
               />
             </Card>
           </Col>
-          <Col size="md-8">
+          <Col size="md-12">
             <Card heading={this.state.result.Title || "Search for a Movie"}>
               {this.state.result.Title ? (
                 <MovieDetails
