@@ -1,6 +1,6 @@
 import React from "react";
-// renders movie images,info
 
+// renders movie images,info
 function MovieDetails(props) {
   const LoopThroughSource = () => {
     console.log(props);
