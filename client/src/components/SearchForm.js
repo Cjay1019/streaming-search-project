@@ -3,7 +3,10 @@ import React from "react";
 function SearchForm(props) {
   return (
     <form>
-      <div className="form-group">
+      <div
+        className="form-group special-color
+#37474F cyan-text"
+      >
         <label htmlFor="search">Search:</label>
         <input
           onChange={props.handleInputChange}
@@ -15,7 +18,10 @@ function SearchForm(props) {
           id="search"
         />
         <br />
-        <button onClick={props.handleFormSubmit} className="btn btn-primary">
+        <button
+          onClick={props.handleFormSubmit}
+          className="btn-rounded btn-elegant"
+        >
           Search
         </button>
       </div>
