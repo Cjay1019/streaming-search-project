@@ -17,7 +17,7 @@ export default {
         "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=" +
           query +
           "&country=us",
-        { headers: { "X-RapidAPI-Key": utellyKey } }
+        { headers: { "X-RapidAPI-Key": yourkeyvariablehere } }
       )
       .then(function(data) {
         //var returnObject = {};

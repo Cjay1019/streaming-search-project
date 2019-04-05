@@ -1,5 +1,5 @@
 import React from "react";
-import OmdbContainer from "./components/OmdbContainer";
+import OmdbContainer from "./pages/OmdbContainer";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 import "./mdb.css";
