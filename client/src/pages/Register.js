@@ -101,7 +101,8 @@ class Register extends Component {
           </button>
           <p>
             Already a member?
-            <a href="#" onClick={this.clickSignIn}>
+            {/* eslint-disable-next-line */}
+            <a href="javascript:;" onClick={this.clickSignIn}>
               Sign in
             </a>
           </p>

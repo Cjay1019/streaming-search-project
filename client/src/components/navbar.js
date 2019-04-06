@@ -1,20 +1,13 @@
 import React from "react";
-import App from "../App.css";
+import Modal from "./Modal";
 
 class Navbar extends React.Component {
-  signup() {
-    console.log("clicked");
-  }
-
-  login() {
-    console.log("clicked");
-  }
-
   render() {
     return (
       <div>
         <nav className="navbar navbar-expand-md navbar-dark elegant-color justify-content-between">
-          <a className="navbar-brand cyan-text" href="#">
+          {/* eslint-disable-next-line */}
+          <a className="navbar-brand cyan-text" href="">
             Streaming Service App
           </a>
 
@@ -22,21 +15,15 @@ class Navbar extends React.Component {
             <ul className="navbar-nav mr-auto">
               <div style={{ display: "flex" }}>
                 {/* <li className="nav-item active"> */}
-                <button
-                  onClick={this.login}
-                  className="nav-link elegant-color cyan-text"
+                <Modal
+                  modalClose={this.props.modalClose}
+                  btnName={this.props.user ? "Profile" : "Sign In"}
                 >
-                  Login
-                </button>
-                {/* </li> */}
+                  {this.props.renderBtn()}
+                </Modal>
 
+                {/* </li> */}
                 {/* <li className="nav-item active"> */}
-                <button
-                  onClick={this.signup}
-                  className="nav-link elegant-color cyan-text"
-                >
-                  Sign Up
-                </button>
                 {/* </li> */}
               </div>
             </ul>

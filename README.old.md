@@ -1,1 +1,0 @@
-# streaming-search-project

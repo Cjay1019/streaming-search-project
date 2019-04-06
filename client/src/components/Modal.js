@@ -24,7 +24,10 @@ class Modal extends Component {
   render() {
     return (
       <MDBContainer>
-        <MDBBtn color="primary" onClick={this.toggle}>
+        <MDBBtn
+          className="nav-link elegant-color cyan-text"
+          onClick={this.toggle}
+        >
           {this.props.btnName}
         </MDBBtn>
         <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
