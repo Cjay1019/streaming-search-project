@@ -1,15 +1,21 @@
-// omdb api with key and using axios
+// tmdb api with key and using axios
 import axios from "axios";
-const BASEURL = "https://www.omdbapi.com/?t=";
-const omdbKEY = "&apikey=b31c3ab9";
+const BASEURL = "https://api.themoviedb.org/3/search/";
+const tmdbKEY = "&api_key=a8b72166f37f46eaccf6cb81bbbca4c1";
+const genreURL = "https://api.themoviedb.org/3/genre/";
 // eslint-disable-next-line
 const utellyKEY = "84d184dfd2msh6b5924af4ec8de5p14dfb2jsn75fb3b8d9b09";
 const connerKEY = "9KBNrYyc6smshwxvf4gIpT7UMF7Ep19W8h3jsnGfSntcS9oioI";
 var returnObject = {};
 
 export default {
-  omdbSearch: function(query) {
-    return axios.get(BASEURL + query + omdbKEY);
+  tmdbSearch: function(selectedOption, query) {
+    return axios.get(BASEURL + selectedOption + "?query=" + query + tmdbKEY);
+  },
+  genreList: function(selectedOption, query) {
+    return axios.get(
+      genreURL + selectedOption + "/list?query=" + query + tmdbKEY
+    );
   },
   utellySearch: (query, services) => {
     return axios
@@ -17,7 +23,7 @@ export default {
         "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=" +
           query +
           "&country=us",
-        { headers: { "X-RapidAPI-Key": utellyKey } }
+        { headers: { "X-RapidAPI-Key": connerKEY } }
       )
       .then(function(data) {
         //var returnObject = {};

@@ -14,7 +14,6 @@ class SignIn extends Component {
     auth
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(res => {
-        console.log(res.user.uid);
         this.setState({
           error: null
         });
@@ -25,6 +24,11 @@ class SignIn extends Component {
             this.setState({
               error:
                 "Wrong password. Try again or click Forgot password to reset it."
+            });
+            break;
+          case "auth/invalid-email":
+            this.setState({
+              error: "Please enter a valid email address."
             });
             break;
           case "auth/user-not-found":
@@ -99,7 +103,8 @@ class SignIn extends Component {
               </div>
             </div>
             <div>
-              <a href="">Forgot password?</a>
+              {/* eslint-disable-next-line */}
+              <a href="javascript:;">Forgot password?</a>
             </div>
           </div>
 
@@ -113,7 +118,8 @@ class SignIn extends Component {
 
           <p>
             Not a member?
-            <a href="#" onClick={this.clickReg}>
+            {/* eslint-disable-next-line */}
+            <a href="javascript:;" onClick={this.clickReg}>
               Register
             </a>
           </p>
