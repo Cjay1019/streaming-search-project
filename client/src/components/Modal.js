@@ -21,6 +21,8 @@ class Modal extends Component {
     }
   };
 
+  renderHeader = name => (name ? `Welcome ${name}!` : "Welcome!");
+
   render() {
     return (
       <MDBContainer>
@@ -31,7 +33,9 @@ class Modal extends Component {
           {this.props.btnName}
         </MDBBtn>
         <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-          <MDBModalHeader toggle={this.toggle}>MDBModal title</MDBModalHeader>
+          <MDBModalHeader toggle={this.toggle}>
+            {this.renderHeader(this.props.currentName)}
+          </MDBModalHeader>
           <MDBModalBody>{this.props.children}</MDBModalBody>
         </MDBModal>
       </MDBContainer>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import auth from "./utils/firebase";
 import TmdbContainer from "./pages/TmdbContainer";
 import Navbar from "./components/navbar";
@@ -8,32 +8,57 @@ import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
 import "./App.css";
+import axios from "axios";
 
 class App extends Component {
   state = {
     user: null,
     userServices: [],
-    register: false
+    register: false,
+    currentName: ""
   };
 
   componentDidMount() {
     auth.onAuthStateChanged(firebaseUser => {
-      this.setState({
-        user: firebaseUser
-      });
-
-      if (firebaseUser) {
-        console.log(`Firebase UID: ${firebaseUser.uid}`);
-      } else {
-        console.log("not logged in");
-      }
+      this.setState(
+        {
+          user: firebaseUser
+        },
+        () => {
+          if (firebaseUser) {
+            console.log(`Firebase UID: ${firebaseUser.uid}`);
+            axios.get(`/api/${firebaseUser.uid}`).then(res => {
+              this.setState({
+                userServices: res.data[0].services,
+                currentName: res.data[0].name
+              });
+            });
+          } else {
+            console.log("not logged in");
+          }
+        }
+      );
     });
   }
+
+  saveServices = signingOut => {
+    if (this.state.user) {
+      axios
+        .put(`/api/${this.state.user.uid}`, this.state.userServices)
+        .then(res => {});
+      if (signingOut) {
+        this.setState({
+          currentName: ""
+        });
+      }
+    }
+  };
 
   modalClose = () => {
     this.setState({
       register: false
     });
+    this.saveServices();
   };
 
   renderSignReg = () => {
@@ -46,6 +71,7 @@ class App extends Component {
     if (this.state.user) {
       return (
         <Profile
+          saveServices={this.saveServices}
           handleChecksInput={this.handleChecksInput}
           userServices={this.state.userServices}
         />
@@ -76,30 +102,28 @@ class App extends Component {
 
   render() {
     return (
-      <div className="backgroundColor elegant-color ">
+      <div className="backgroundColor elegant-color vh-100">
         <Navbar
           user={this.state.user}
+          currentName={this.state.currentName}
           modalClose={this.modalClose}
           renderBtn={this.renderBtn}
         />
-        {/* <Router>
+        <Router>
           <Switch>
             <Route
               exact
               path="/"
-              component={() => (
+              render={props => (
                 <TmdbContainer
                   handleChecksInput={this.handleChecksInput}
                   userServices={this.state.userServices}
+                  {...props}
                 />
               )}
             />
           </Switch>
-        </Router> */}
-        <TmdbContainer
-          handleChecksInput={this.handleChecksInput}
-          userServices={this.state.userServices}
-        />
+        </Router>
         <Footer />
       </div>
     );

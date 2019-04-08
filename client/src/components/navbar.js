@@ -16,6 +16,7 @@ class Navbar extends React.Component {
               <div style={{ display: "flex" }}>
                 {/* <li className="nav-item active"> */}
                 <Modal
+                  currentName={this.props.currentName}
                   modalClose={this.props.modalClose}
                   btnName={this.props.user ? "Profile" : "Sign In"}
                 >

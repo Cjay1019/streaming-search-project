@@ -116,11 +116,11 @@ class SignIn extends Component {
             Sign in
           </button>
 
-          <p>
+          <p className="px-1">
             Not a member?
             {/* eslint-disable-next-line */}
             <a href="javascript:;" onClick={this.clickReg}>
-              Register
+              &nbsp;Register
             </a>
           </p>
         </form>
