@@ -76,7 +76,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="backgroundColor elegant-color ">
+      <div className="appBody">
         <Navbar
           user={this.state.user}
           modalClose={this.modalClose}
