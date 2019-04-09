@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
+import Reset from "./pages/Reset";
 import "./App.css";
 import axios from "axios";
 
@@ -15,6 +16,7 @@ class App extends Component {
     user: null,
     userServices: [],
     register: false,
+    reset: false,
     currentName: ""
   };
 
@@ -58,12 +60,21 @@ class App extends Component {
     this.setState({
       register: false
     });
+    if (this.state.reset) {
+      this.clickReset();
+    }
     this.saveServices();
   };
 
   renderSignReg = () => {
     this.setState({
       register: !this.state.register
+    });
+  };
+
+  clickReset = () => {
+    this.setState({
+      reset: !this.state.reset
     });
   };
 
@@ -76,18 +87,18 @@ class App extends Component {
           userServices={this.state.userServices}
         />
       );
+    } else if (this.state.reset) {
+      return <Reset />;
+    } else if (this.state.register) {
+      return <Register renderSignReg={this.renderSignReg} />;
+    } else {
+      return (
+        <SignIn
+          renderSignReg={this.renderSignReg}
+          clickReset={this.clickReset}
+        />
+      );
     }
-    return this.state.register ? (
-      <Register
-        renderSignReg={this.renderSignReg}
-        linkHandler={this.linkHandler}
-      />
-    ) : (
-      <SignIn
-        renderSignReg={this.renderSignReg}
-        linkHandler={this.linkHandler}
-      />
-    );
   };
 
   handleChecksInput = event => {
