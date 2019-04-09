@@ -5,11 +5,13 @@ import Modal from "./Modal";
 
 const navStyle = {
   //100% opacity
-  // backgroundImage: "url('//i.imgur.com/JSZaQTK.png')",
+  // backgroundImage: "url('//i.imgur.com/fklw0oO.png')",
   // 60%opacity
-  backgroundImage: "url('//i.imgur.com/KXufGqW.png')",
+  backgroundImage: "url('//i.imgur.com/QG7RtH5.png')",
   width: "80%",
-  backgroundSize: "cover"
+  backgroundSize: "cover",
+  display: "flex",
+  lineHeight: "5"
   // backgroundColor: "orange"
 };
 

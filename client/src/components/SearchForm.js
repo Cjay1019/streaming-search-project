@@ -1,4 +1,5 @@
 import React from "react";
+import { MDBBtn } from "mdbreact";
 
 function SearchForm(props) {
   return (
@@ -18,12 +19,12 @@ function SearchForm(props) {
           id="search"
         />
         <br />
-        <button
+        <MDBBtn
           onClick={props.handleFormSubmit}
-          className="btn-rounded btn-elegant"
+          className="btn-rounded btn-outline-info waves-effect btn-elegant "
         >
           Search
-        </button>
+        </MDBBtn>
       </div>
     </form>
   );

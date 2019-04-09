@@ -89,14 +89,13 @@ class TmdbContainer extends Component {
     return (
       <Container>
         <Row>
-          <Col size="md-8">
-            <RadioBtn
-              selectedOption={this.state.selectedOption}
-              handleOptionChange={this.handleOptionChange}
-            />
-          </Col>
+          <Col size="md-12" />
           <Col size="md-12">
             <Card heading="Search">
+              <RadioBtn
+                selectedOption={this.state.selectedOption}
+                handleOptionChange={this.handleOptionChange}
+              />
               <Checks
                 handleChecksInput={this.props.handleChecksInput}
                 userServices={this.props.userServices}
