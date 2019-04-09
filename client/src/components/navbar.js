@@ -11,7 +11,8 @@ const navStyle = {
   width: "80%",
   backgroundSize: "cover",
   display: "flex",
-  lineHeight: "5"
+  lineHeight: "5",
+  marginBottom: "1em"
   // backgroundColor: "orange"
 };
 
