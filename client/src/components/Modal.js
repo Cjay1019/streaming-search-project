@@ -24,6 +24,8 @@ class Modal extends Component {
     }
   };
 
+  renderHeader = name => (name ? `Welcome ${name}!` : "Welcome!");
+
   render() {
     return (
       <MDBContainer>
@@ -41,7 +43,7 @@ class Modal extends Component {
             cyan-text"
             style={modalStyle}
           >
-            MDBModal title
+            {this.renderHeader(this.props.currentName)}
           </MDBModalHeader>
           <MDBModalBody className="elegant-color cyan-text" style={modalStyle}>
             {this.props.children}

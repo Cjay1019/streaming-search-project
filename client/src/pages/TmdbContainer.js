@@ -32,10 +32,6 @@ class TmdbContainer extends Component {
     });
   };
 
-  componentWillUnmount() {
-    console.log(true);
-  }
-
   movieSearch = (query, services) => {
     var movieGenreIDs = [];
     API.utellySearch(query, services)

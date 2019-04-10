@@ -2,8 +2,8 @@ import React from "react";
 // creates the card body
 
 const foot = {
-  padding: "0vh"
-  // backgroundColor: "green"
+  padding: "0vh",
+  backgroundColor: "cyan-text"
 };
 // place between "{foot}>" and "</div>" to show contetnt in footer
 const Footer = () => {

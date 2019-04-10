@@ -28,21 +28,18 @@ export default {
         //var returnObject = {};
         returnObject.urlArray = [];
         returnObject.sourceName = [];
-        console.log(data);
         let locations = data.data.results[0].locations;
 
         for (let i = 0; i < locations.length; i++) {
           if (services.includes(locations[i].display_name)) {
             returnObject.urlArray.push(locations[i].url);
             returnObject.sourceName.push(locations[i].display_name);
-            console.log(returnObject.urlArray);
           }
         }
 
         for (let i = 0; i < locations.length; i++) {
           if (services.includes(locations[i].display_name)) {
             returnObject.title = query;
-            console.log(returnObject);
             return returnObject;
           }
         }
