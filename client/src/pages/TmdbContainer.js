@@ -52,15 +52,17 @@ class TmdbContainer extends Component {
               movie.data.results.length === 0 ||
               movie.data.results[0].length === 0
             ) {
-              alert(
-                "Movie or TV Show is either not found, or not available on your services"
-              );
+              newState.result[i] = {};
+              newState.result[i].name = "N/A";
+              newState.result[i].poster_path =
+                "https://customers.seometamanager.com/knowledgegraph/logo/na-stock_myshopify_com_logo.png";
+              newState.result[i].first_air_date = "N/A";
             } else {
               newState.result[i] = movie.data.results[0];
 
               movieGenreIDs[i] = movie.data.results[0].genre_ids;
             }
-            this.filterData(newState);
+            //this.filterData(newState);
           })
           .then(() => {
             API.genreList(this.state.selectedOption, element.showName).then(
@@ -74,12 +76,17 @@ class TmdbContainer extends Component {
                     }
                   }
 
-                  if (genreList.length) {
+                  if (genreList.length > 0) {
                     newState.genres[i] = genreList;
                     console.log(newState.genres[i]);
                   }
                 }
-                this.filterData(newState);
+                if (genreList.length < 1) {
+                  genreList[0] = "N/A";
+                  console.log(genreList);
+                  newState.genres[i] = genreList;
+                }
+                //this.filterData(newState);
                 console.log(newState);
 
                 //this.setState(newState);
@@ -100,7 +107,7 @@ class TmdbContainer extends Component {
       }
     );
   };
-
+  /*
   filterData = newState => {
     //filter
     newState.result = newState.result.filter(n => n);
@@ -108,6 +115,7 @@ class TmdbContainer extends Component {
     //this.setState(newState);
     //console.log(this.state);
   };
+  */
   // handle input for the ui
   handleInputChange = event => {
     const value = event.target.value;
@@ -133,12 +141,12 @@ class TmdbContainer extends Component {
         <Col size="md-12" key={returnObject.showName}>
           <Card
             heading={
-              this.state.result[i].name ||
-              this.state.result[i].title ||
-              "Search for a Movie or TV Show"
+              returnObject[i].showName || "Search for a Movie or TV Show"
             }
           >
-            {this.state.result[i].name || this.state.result[i].title ? (
+            {this.state.result[i].name ||
+            this.state.result[i].title ||
+            returnObject[i].showName ? (
               <MovieDetails
                 name={this.state.result[i].name || this.state.result[i].title}
                 src={this.state.result[i].poster_path}

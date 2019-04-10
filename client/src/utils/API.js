@@ -7,6 +7,24 @@ const genreURL = "https://api.themoviedb.org/3/genre/";
 const utellyKEY = "84d184dfd2msh6b5924af4ec8de5p14dfb2jsn75fb3b8d9b09";
 //const connerKEY = "9KBNrYyc6smshwxvf4gIpT7UMF7Ep19W8h3jsnGfSntcS9oioI";
 var returnObject = [];
+/*
+var checkFalsy = obj => {
+  for (let i = 0; i < obj.length; i++) {
+    if (obj[i].showName === "") {
+      return false;
+    } else return true;
+  }
+}*/ const removeFalsy = obj => {
+  for (let i = 0; i < obj.length; i++) {
+    if (obj[i].showName === "") {
+      obj.splice(i, 1);
+      i--;
+    }
+    //checkFalsy(obj);
+  }
+
+  return obj;
+};
 
 export default {
   tmdbSearch: function(selectedOption, query) {
@@ -44,6 +62,9 @@ export default {
             }
           }
         }
+
+        returnObject = removeFalsy(returnObject);
+
         console.log(returnObject);
         return returnObject;
       });
