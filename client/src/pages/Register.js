@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import auth from "../utils/firebase";
+import axios from "axios";
+import { MDBAlert } from "mdbreact";
 
 class Register extends Component {
   state = {
@@ -8,21 +10,46 @@ class Register extends Component {
     lastName: "",
     email: "",
     password: "",
-    errors: null
+    firebaseId: "",
+    error: null
   };
 
   createAccount = () => {
     auth
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(res => {
-        this.setState({
-          errors: null
-        });
+        this.setState(
+          {
+            errors: null,
+            firebaseId: res.user.uid
+          },
+          () => {
+            let newUser = {
+              name: `${this.state.firstName} ${this.state.lastName}`,
+              email: this.state.email,
+              firebaseId: res.user.uid,
+              services: []
+            };
+            console.log(newUser);
+            axios.post("/api/create", newUser).then(res => {
+              console.log("success?", res.data);
+            });
+          }
+        );
       })
       .catch(error => {
-        this.setState({
-          errors: error.message
-        });
+        this.setState({ email: "", password: "" });
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            this.setState({
+              error: "This email address is already in use by another account."
+            });
+            break;
+          default:
+            this.setState({
+              error: "Something went wrong. Please try again."
+            });
+        }
       });
   };
 
@@ -74,7 +101,7 @@ class Register extends Component {
 
           <input
             onChange={this.handleInputChange}
-            value={this.value}
+            value={this.state.email}
             name="email"
             type="email"
             id="defaultLoginFormEmail"
@@ -84,7 +111,7 @@ class Register extends Component {
 
           <input
             onChange={this.handleInputChange}
-            value={this.value}
+            value={this.state.password}
             name="password"
             type="password"
             id="defaultLoginFormPassword"
@@ -94,7 +121,7 @@ class Register extends Component {
 
           <button
             onClick={this.handleFormSubmit}
-            className="btn btn-info btn-block my-4"
+            className="btn btn-info btn-rounded my-4 blue-gradient btn-outline-info waves-effect"
             type="submit"
           >
             Register
@@ -103,10 +130,13 @@ class Register extends Component {
             Already a member?
             {/* eslint-disable-next-line */}
             <a href="javascript:;" onClick={this.clickSignIn}>
-              Sign in
+              &nbsp;Sign in
             </a>
           </p>
         </form>
+        {this.state.error && (
+          <MDBAlert color="danger">{this.state.error}</MDBAlert>
+        )}
       </Container>
     );
   }

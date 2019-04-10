@@ -1,11 +1,16 @@
 import React from "react";
 
+const radioStyle = {
+  color: "#00bcd4"
+};
+
 function MovieOrTVShow(props) {
   return (
-    <div className="MovieOrTVShow">
+    <div className="MovieOrTVShow pb-3" style={radioStyle}>
       <div>
-        <label>
+        <div className="custom-control custom-radio d-inline mx-2">
           <input
+            className="custom-control-input"
             type="radio"
             id="movie"
             name="watch"
@@ -13,13 +18,13 @@ function MovieOrTVShow(props) {
             checked={props.selectedOption === "movie"}
             onChange={props.handleOptionChange}
           />
-          Movie
-        </label>
-      </div>
-
-      <div>
-        <label>
+          <label className="custom-control-label" htmlFor="movie">
+            Movie
+          </label>
+        </div>
+        <div className="custom-control custom-radio d-inline mx-2">
           <input
+            className="custom-control-input"
             type="radio"
             id="tv"
             name="watch"
@@ -27,8 +32,10 @@ function MovieOrTVShow(props) {
             checked={props.selectedOption === "tv"}
             onChange={props.handleOptionChange}
           />
-          TV Show
-        </label>
+          <label className="custom-control-label" htmlFor="tv">
+            TV Show
+          </label>
+        </div>
       </div>
     </div>
   );

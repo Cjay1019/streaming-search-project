@@ -1,4 +1,5 @@
 import React from "react";
+import { MDBBtn } from "mdbreact";
 
 function SearchForm(props) {
   return (
@@ -7,7 +8,6 @@ function SearchForm(props) {
         className="form-group special-color
 #37474F cyan-text"
       >
-        <label htmlFor="search">Search:</label>
         <input
           onChange={props.handleInputChange}
           value={props.value}
@@ -18,12 +18,13 @@ function SearchForm(props) {
           id="search"
         />
         <br />
-        <button
+        <MDBBtn
           onClick={props.handleFormSubmit}
-          className="btn-rounded btn-elegant"
+          className="btn-rounded btn-outline-info waves-effect btn-elegant"
+          type="submit"
         >
           Search
-        </button>
+        </MDBBtn>
       </div>
     </form>
   );

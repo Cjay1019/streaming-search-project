@@ -21,18 +21,33 @@ class Modal extends Component {
     }
   };
 
+  renderHeader = name => (name ? `Welcome ${name}!` : "Welcome!");
+
   render() {
     return (
       <MDBContainer>
         <MDBBtn
-          className="nav-link elegant-color cyan-text"
+          className="btn-rounded btn blue-gradient btn-outline-info waves-effect cyan-text"
           onClick={this.toggle}
         >
           {this.props.btnName}
         </MDBBtn>
-        <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-          <MDBModalHeader toggle={this.toggle}>MDBModal title</MDBModalHeader>
-          <MDBModalBody>{this.props.children}</MDBModalBody>
+        <MDBModal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className="modalZ"
+        >
+          <MDBModalHeader
+            toggle={this.toggle}
+            className="
+            elegant-color
+            cyan-text"
+          >
+            {this.renderHeader(this.props.currentName)}
+          </MDBModalHeader>
+          <MDBModalBody className="elegant-color cyan-text">
+            {this.props.children}
+          </MDBModalBody>
         </MDBModal>
       </MDBContainer>
     );

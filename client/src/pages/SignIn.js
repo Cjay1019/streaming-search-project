@@ -88,39 +88,26 @@ class SignIn extends Component {
 
           <div className="d-flex justify-content-around">
             <div>
-              <div className="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  className="custom-control-input"
-                  id="defaultLoginFormRemember"
-                />
-                <label
-                  className="custom-control-label"
-                  htmlFor="defaultLoginFormRemember"
-                >
-                  Remember me
-                </label>
-              </div>
-            </div>
-            <div>
               {/* eslint-disable-next-line */}
-              <a href="javascript:;">Forgot password?</a>
+              <a href="javascript:;" onClick={this.props.clickReset}>
+                Forgot password?
+              </a>
             </div>
           </div>
 
           <button
             onClick={this.handleFormSubmit}
-            className="btn btn-info btn-block my-4"
+            className="btn btn-info btn-rounded my-4 blue-gradient btn-outline-info waves-effect"
             type="submit"
           >
             Sign in
           </button>
 
-          <p>
+          <p className="px-1">
             Not a member?
             {/* eslint-disable-next-line */}
             <a href="javascript:;" onClick={this.clickReg}>
-              Register
+              &nbsp;Register
             </a>
           </p>
         </form>
