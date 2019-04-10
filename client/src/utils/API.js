@@ -4,8 +4,7 @@ const BASEURL = "https://api.themoviedb.org/3/search/";
 const tmdbKEY = "&api_key=a8b72166f37f46eaccf6cb81bbbca4c1";
 const genreURL = "https://api.themoviedb.org/3/genre/";
 // eslint-disable-next-line
-const utellyKEY = "84d184dfd2msh6b5924af4ec8de5p14dfb2jsn75fb3b8d9b09";
-const connerKEY = "9KBNrYyc6smshwxvf4gIpT7UMF7Ep19W8h3jsnGfSntcS9oioI";
+const toddKEY = "NSkkF3Om8xmshbpLTFKHrzJ6cIj0p1nzurQjsnJfnzM6SM4MGp";
 var returnObject = {};
 
 export default {
@@ -23,27 +22,24 @@ export default {
         "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=" +
           query +
           "&country=us",
-        { headers: { "X-RapidAPI-Key": connerKEY } }
+        { headers: { "X-RapidAPI-Key": toddKEY } }
       )
       .then(function(data) {
         //var returnObject = {};
         returnObject.urlArray = [];
         returnObject.sourceName = [];
-        console.log(data);
         let locations = data.data.results[0].locations;
 
         for (let i = 0; i < locations.length; i++) {
           if (services.includes(locations[i].display_name)) {
             returnObject.urlArray.push(locations[i].url);
             returnObject.sourceName.push(locations[i].display_name);
-            console.log(returnObject.urlArray);
           }
         }
 
         for (let i = 0; i < locations.length; i++) {
           if (services.includes(locations[i].display_name)) {
             returnObject.title = query;
-            console.log(returnObject);
             return returnObject;
           }
         }

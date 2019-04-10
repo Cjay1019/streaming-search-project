@@ -11,6 +11,11 @@ import API from "../utils/API";
 
 import { returnObject } from "../utils/API";
 
+const containerStyle = {
+  padding: "0",
+  display: "flex",
+  marginTop: "1em"
+};
 class TmdbContainer extends Component {
   state = {
     selectedOption: "tv",
@@ -26,10 +31,6 @@ class TmdbContainer extends Component {
       selectedOption: event.target.value
     });
   };
-
-  componentWillUnmount() {
-    console.log(true);
-  }
 
   movieSearch = (query, services) => {
     var movieGenreIDs = [];
@@ -89,14 +90,13 @@ class TmdbContainer extends Component {
     return (
       <Container>
         <Row>
-          <Col size="md-8">
-            <RadioBtn
-              selectedOption={this.state.selectedOption}
-              handleOptionChange={this.handleOptionChange}
-            />
-          </Col>
-          <Col size="md-12">
-            <Card heading="Search">
+          <Col size="md-12" />
+          <Col size="md-12" customClass="p-0 mt-4">
+            <Card heading="Select your search properties below">
+              <RadioBtn
+                selectedOption={this.state.selectedOption}
+                handleOptionChange={this.handleOptionChange}
+              />
               <Checks
                 handleChecksInput={this.props.handleChecksInput}
                 userServices={this.props.userServices}

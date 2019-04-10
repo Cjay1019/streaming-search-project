@@ -26,8 +26,8 @@ module.exports = {
   // Update the specified Users
   update: function(req, res) {
     db.Users.findOneAndUpdate(
-      { _id: req.params.id },
-      { $set: req.body },
+      { firebaseId: req.params.id },
+      { $set: { services: req.body } },
       { new: true }
     ).then(function(dbUsers) {
       res.json(dbUsers);

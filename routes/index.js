@@ -6,4 +6,6 @@ module.exports = function(app) {
   app.post("/api/create", userController.create);
 
   app.get("/api/:id", userController.find);
+
+  app.put("/api/:id", userController.update);
 };
