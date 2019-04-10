@@ -11,11 +11,6 @@ import API from "../utils/API";
 import { returnObject } from "../utils/API";
 import { MDBAnimation } from "mdbreact";
 
-const containerStyle = {
-  padding: "0",
-  display: "flex",
-  marginTop: "1em"
-};
 class TmdbContainer extends Component {
   state = {
     selectedOption: "tv",

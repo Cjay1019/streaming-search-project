@@ -33,7 +33,7 @@ function MovieDetails(props) {
         <div className="col-sm-4">
           <h3>Genre: {props.genre.join(", ")}</h3>
           <h3>Released: {props.released}</h3>
-          <h3>URL(s) to source:</h3>
+          <h3>Watch Now:</h3>
           {LoopThroughSource()}
         </div>
       </div>

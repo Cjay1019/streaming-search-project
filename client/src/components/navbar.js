@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import Modal from "./Modal";
 
-// const navbarImagePath = "../../public/assets/img/streamingHeader.png";
-
+// --------------------------------------------------------
+// styling
 const navStyle = {
-  backgroundImage: "url('//i.imgur.com/qlCi5LH.png')",
+  backgroundImage: "url('//i.imgur.com/mjWffKU.png')",
 
   backgroundSize: "contain",
   minHeight: "20em",
@@ -16,6 +16,7 @@ const linksStyle = {
   padding: "0",
   display: "flex"
 };
+// --------------------------------------------------------
 
 class Navbar extends React.Component {
   render() {
