@@ -1,29 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 import Modal from "./Modal";
 
-// const navbarImagePath = "../../public/assets/img/streamingHeader.png";
-
+// --------------------------------------------------------
+// styling
 const navStyle = {
-  //100% opacity
-  // backgroundImage: "url('//i.imgur.com/bchezKm.png')",
-  // 60%opacity
-  backgroundImage: "url('//i.imgur.com/qlCi5LH.png')",
-  // cropped image
-  // backgroundImage: "url('//i.imgur.com/R4ugpLC.png')",
+  backgroundImage: "url('//i.imgur.com/mjWffKU.png')",
 
-  width: "100%",
   backgroundSize: "contain",
+  minHeight: "20em",
   backgroundRepeat: "no-repeat",
   display: "flex",
-  lineHeight: "20",
-  boxSizing: "border-box",
   padding: "0"
 };
 const linksStyle = {
   padding: "0",
   display: "flex"
-  // backgroundColor: "orange"
 };
+// --------------------------------------------------------
 
 class Navbar extends React.Component {
   render() {
