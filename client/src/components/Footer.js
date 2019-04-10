@@ -2,7 +2,7 @@ import React from "react";
 // creates the card body
 
 const foot = {
-  padding: "5vh",
+  padding: "0vh",
   backgroundColor: "cyan-text"
 };
 

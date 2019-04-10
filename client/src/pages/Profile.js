@@ -5,6 +5,7 @@ import auth from "../utils/firebase";
 
 class Profile extends Component {
   signOut = () => {
+    this.props.saveServices(true);
     auth.signOut();
   };
 
