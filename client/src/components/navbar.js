@@ -33,14 +33,6 @@ class Navbar extends React.Component {
           className="container navbar navbar-expand-md navbar-dark justify-content-between rounded mb-0"
           style={navStyle}
         >
-          <div>
-            <Modal
-              modalClose={this.props.modalClose}
-              btnName={this.props.user ? "Profile" : "Sign In"}
-            >
-              {this.props.renderBtn()}
-            </Modal>
-          </div>
           {/* eslint-disable-next-line */}
           <a className="navbar-brand cyan-text" href="" />
 
