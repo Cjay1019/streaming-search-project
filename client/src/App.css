@@ -4,3 +4,7 @@
   min-height: 100vh;
   padding-bottom: 5%;
 }
+
+.modalZ {
+  z-index: 9999 !important;
+}
