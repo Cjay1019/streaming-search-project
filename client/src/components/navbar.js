@@ -5,14 +5,23 @@ import Modal from "./Modal";
 
 const navStyle = {
   //100% opacity
-  // backgroundImage: "url('//i.imgur.com/fklw0oO.png')",
+  // backgroundImage: "url('//i.imgur.com/bchezKm.png')",
   // 60%opacity
-  backgroundImage: "url('//i.imgur.com/QG7RtH5.png')",
-  width: "80%",
-  backgroundSize: "cover",
+  backgroundImage: "url('//i.imgur.com/qlCi5LH.png')",
+  // cropped image
+  // backgroundImage: "url('//i.imgur.com/R4ugpLC.png')",
+
+  width: "100%",
+  backgroundSize: "contain",
+  backgroundRepeat: "no-repeat",
   display: "flex",
-  lineHeight: "5",
-  marginBottom: "1em"
+  lineHeight: "20",
+  boxSizing: "border-box",
+  padding: "0"
+};
+const linksStyle = {
+  padding: "0",
+  display: "flex"
   // backgroundColor: "orange"
 };
 
@@ -24,14 +33,20 @@ class Navbar extends React.Component {
           className="container navbar navbar-expand-md navbar-dark justify-content-between rounded mb-0"
           style={navStyle}
         >
+          <div>
+            <Modal
+              modalClose={this.props.modalClose}
+              btnName={this.props.user ? "Profile" : "Sign In"}
+            >
+              {this.props.renderBtn()}
+            </Modal>
+          </div>
           {/* eslint-disable-next-line */}
-          <a className="navbar-brand cyan-text" href="">
-            Streaming Service App
-          </a>
+          <a className="navbar-brand cyan-text" href="" />
 
-          <div className="linksContainer">
+          <div className="linksContainer" style={linksStyle}>
             <ul className="navbar-nav mr-auto">
-              <div style={{ display: "flex" }}>
+              <div>
                 {/* <li className="nav-item active"> */}
                 <Modal
                   modalClose={this.props.modalClose}

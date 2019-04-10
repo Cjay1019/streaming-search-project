@@ -7,8 +7,8 @@ function Col(props) {
     .split(" ")
     .map(size => "col-" + size)
     .join(" ");
-
-  return <div className={size}>{props.children}</div>;
+  const customClass = props.customClass;
+  return <div className={size + " " + customClass}>{props.children}</div>;
 }
 
 export default Col;

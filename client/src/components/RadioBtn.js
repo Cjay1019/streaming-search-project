@@ -11,7 +11,7 @@ function MovieOrTVShow(props) {
         <span>
           <label>
             <input
-              type="checkbox"
+              type="radio"
               id="movie"
               name="watch"
               value="movie"
@@ -22,7 +22,7 @@ function MovieOrTVShow(props) {
           </label>
           <label>
             <input
-              type="checkbox"
+              type="radio"
               id="tv"
               name="watch"
               value="tv"

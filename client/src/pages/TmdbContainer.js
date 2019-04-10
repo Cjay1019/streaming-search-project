@@ -11,6 +11,11 @@ import API from "../utils/API";
 
 import { returnObject } from "../utils/API";
 
+const containerStyle = {
+  padding: "0",
+  display: "flex",
+  marginTop: "1em"
+};
 class TmdbContainer extends Component {
   state = {
     selectedOption: "tv",
@@ -90,8 +95,8 @@ class TmdbContainer extends Component {
       <Container>
         <Row>
           <Col size="md-12" />
-          <Col size="md-12">
-            <Card heading="Search">
+          <Col size="md-12" customClass="p-0 mt-4">
+            <Card heading="Select your search properties below">
               <RadioBtn
                 selectedOption={this.state.selectedOption}
                 handleOptionChange={this.handleOptionChange}
