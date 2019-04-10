@@ -121,7 +121,7 @@ class Register extends Component {
 
           <button
             onClick={this.handleFormSubmit}
-            className="btn btn-info btn-block my-4"
+            className="btn btn-info btn-rounded my-4 blue-gradient btn-outline-info waves-effect"
             type="submit"
           >
             Register

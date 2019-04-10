@@ -1,19 +1,44 @@
 import React from "react";
 import Modal from "./Modal";
 
+// const navbarImagePath = "../../public/assets/img/streamingHeader.png";
+
+const navStyle = {
+  //100% opacity
+  // backgroundImage: "url('//i.imgur.com/bchezKm.png')",
+  // 60%opacity
+  backgroundImage: "url('//i.imgur.com/qlCi5LH.png')",
+  // cropped image
+  // backgroundImage: "url('//i.imgur.com/R4ugpLC.png')",
+
+  width: "100%",
+  backgroundSize: "contain",
+  backgroundRepeat: "no-repeat",
+  display: "flex",
+  lineHeight: "20",
+  boxSizing: "border-box",
+  padding: "0"
+};
+const linksStyle = {
+  padding: "0",
+  display: "flex"
+  // backgroundColor: "orange"
+};
+
 class Navbar extends React.Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-md navbar-dark elegant-color justify-content-between">
+        <nav
+          className="container navbar navbar-expand-md navbar-dark justify-content-between rounded mb-0"
+          style={navStyle}
+        >
           {/* eslint-disable-next-line */}
-          <a className="navbar-brand cyan-text" href="">
-            Streaming Service App
-          </a>
+          <a className="navbar-brand cyan-text" href="" />
 
-          <div className="linksContainer">
+          <div className="linksContainer" style={linksStyle}>
             <ul className="navbar-nav mr-auto">
-              <div style={{ display: "flex" }}>
+              <div>
                 {/* <li className="nav-item active"> */}
                 <Modal
                   currentName={this.props.currentName}

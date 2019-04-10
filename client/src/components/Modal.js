@@ -7,6 +7,9 @@ import {
   MDBModalHeader
 } from "mdbreact";
 
+const modalStyle = {
+  // backgroundColor: "orange"
+};
 class Modal extends Component {
   state = {
     modal: false
@@ -27,16 +30,24 @@ class Modal extends Component {
     return (
       <MDBContainer>
         <MDBBtn
-          className="nav-link elegant-color cyan-text"
+          className="btn-rounded btn blue-gradient btn-outline-info waves-effect cyan-text"
           onClick={this.toggle}
         >
           {this.props.btnName}
         </MDBBtn>
         <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-          <MDBModalHeader toggle={this.toggle}>
+          <MDBModalHeader
+            toggle={this.toggle}
+            className="
+            elegant-color
+            cyan-text"
+            style={modalStyle}
+          >
             {this.renderHeader(this.props.currentName)}
           </MDBModalHeader>
-          <MDBModalBody>{this.props.children}</MDBModalBody>
+          <MDBModalBody className="elegant-color cyan-text" style={modalStyle}>
+            {this.props.children}
+          </MDBModalBody>
         </MDBModal>
       </MDBContainer>
     );

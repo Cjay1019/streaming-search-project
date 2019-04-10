@@ -113,7 +113,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="backgroundColor elegant-color vh-100">
+      <div className="appBody">
         <Navbar
           user={this.state.user}
           currentName={this.state.currentName}
