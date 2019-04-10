@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { MDBAnimation } from "mdbreact";
 import auth from "./utils/firebase";
 import TmdbContainer from "./pages/TmdbContainer";
 import Navbar from "./components/navbar";
@@ -115,27 +114,23 @@ class App extends Component {
   render() {
     return (
       <div className="appBody">
-        {/* <MDBAnimation type="fadeInUp" delay="1s"> */}
         <Navbar
           user={this.state.user}
           currentName={this.state.currentName}
           modalClose={this.modalClose}
           renderBtn={this.renderBtn}
         />
-        {/* </MDBAnimation> */}
         <Router>
           <Switch>
             <Route
               exact
               path="/"
               render={props => (
-                <MDBAnimation type="fadeInUp" delay="1s">
-                  <TmdbContainer
-                    handleChecksInput={this.handleChecksInput}
-                    userServices={this.state.userServices}
-                    {...props}
-                  />
-                </MDBAnimation>
+                <TmdbContainer
+                  handleChecksInput={this.handleChecksInput}
+                  userServices={this.state.userServices}
+                  {...props}
+                />
               )}
             />
           </Switch>

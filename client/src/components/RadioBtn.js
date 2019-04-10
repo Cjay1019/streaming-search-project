@@ -6,36 +6,32 @@ const radioStyle = {
 
 function MovieOrTVShow(props) {
   return (
-    <div className="MovieOrTVShow pb-3" style={radioStyle}>
+    <div className="MovieOrTVShow" style={radioStyle}>
       <div>
-        <div className="custom-control custom-radio d-inline mx-2">
-          <input
-            className="custom-control-input"
-            type="radio"
-            id="movie"
-            name="watch"
-            value="movie"
-            checked={props.selectedOption === "movie"}
-            onChange={props.handleOptionChange}
-          />
-          <label className="custom-control-label" htmlFor="movie">
+        <span>
+          <label>
+            <input
+              type="radio"
+              id="movie"
+              name="watch"
+              value="movie"
+              checked={props.selectedOption === "movie"}
+              onChange={props.handleOptionChange}
+            />
             Movie
           </label>
-        </div>
-        <div className="custom-control custom-radio d-inline mx-2">
-          <input
-            className="custom-control-input"
-            type="radio"
-            id="tv"
-            name="watch"
-            value="tv"
-            checked={props.selectedOption === "tv"}
-            onChange={props.handleOptionChange}
-          />
-          <label className="custom-control-label" htmlFor="tv">
+          <label>
+            <input
+              type="radio"
+              id="tv"
+              name="watch"
+              value="tv"
+              checked={props.selectedOption === "tv"}
+              onChange={props.handleOptionChange}
+            />
             TV Show
           </label>
-        </div>
+        </span>
       </div>
     </div>
   );

@@ -38,7 +38,6 @@ class Register extends Component {
         );
       })
       .catch(error => {
-        this.setState({ email: "", password: "" });
         switch (error.code) {
           case "auth/email-already-in-use":
             this.setState({
@@ -63,6 +62,7 @@ class Register extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    this.setState({ email: "", password: "" });
     this.createAccount();
   };
 

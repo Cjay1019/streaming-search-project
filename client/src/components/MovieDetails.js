@@ -1,5 +1,4 @@
 import React from "react";
-import { MDBView } from "mdbreact";
 
 // renders movie images,info
 function MovieDetails(props) {
@@ -20,20 +19,18 @@ function MovieDetails(props) {
 
       <div className="row">
         <div className="col-sm-8">
-          <MDBView hover zoom>
-            <img
-              alt={props.name}
-              className="img-fluid"
-              src={"http://image.tmdb.org/t/p/w200" + props.src}
-              style={{ margin: "0 auto" }}
-            />
-          </MDBView>
+          <img
+            alt={props.name}
+            className="img-fluid"
+            src={"http://image.tmdb.org/t/p/w200" + props.src}
+            style={{ margin: "0 auto" }}
+          />
         </div>
 
         <div className="col-sm-4">
           <h3>Genre: {props.genre.join(", ")}</h3>
           <h3>Released: {props.released}</h3>
-          <h3>Watch Now:</h3>
+          <h3>URL(s) to source:</h3>
           {LoopThroughSource()}
         </div>
       </div>
