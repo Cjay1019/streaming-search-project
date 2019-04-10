@@ -8,8 +8,8 @@ import SearchForm from "../components/SearchForm";
 import MovieDetails from "../components/MovieDetails";
 import RadioBtn from "../components/RadioBtn";
 import API from "../utils/API";
-
 import { returnObject } from "../utils/API";
+import { MDBAnimation } from "mdbreact";
 
 const containerStyle = {
   padding: "0",
@@ -71,6 +71,7 @@ class TmdbContainer extends Component {
   };
   // handle input for the ui
   handleInputChange = event => {
+    event.preventDefault();
     const value = event.target.value;
     const name = event.target.name;
     this.setState({
@@ -108,24 +109,26 @@ class TmdbContainer extends Component {
               />
             </Card>
           </Col>
-          <Col size="md-12">
+          <Col size="md-12" customClass="p-0 mt-4">
             <Card
               heading={
                 this.state.result.name || "Search for a Movie or TV Show"
               }
             >
               {this.state.result.name || this.state.result.title ? (
-                <MovieDetails
-                  name={this.state.result.name || this.state.result.title}
-                  src={this.state.result.poster_path}
-                  genre={this.state.genres}
-                  released={
-                    this.state.result.first_air_date ||
-                    this.state.result.release_date
-                  }
-                  urlArray={returnObject.urlArray}
-                  sourceName={returnObject.sourceName}
-                />
+                <MDBAnimation type="fadeIn">
+                  <MovieDetails
+                    name={this.state.result.name || this.state.result.title}
+                    src={this.state.result.poster_path}
+                    genre={this.state.genres}
+                    released={
+                      this.state.result.first_air_date ||
+                      this.state.result.release_date
+                    }
+                    urlArray={returnObject.urlArray}
+                    sourceName={returnObject.sourceName}
+                  />
+                </MDBAnimation>
               ) : (
                 <h3>No Results to Display</h3>
               )}
