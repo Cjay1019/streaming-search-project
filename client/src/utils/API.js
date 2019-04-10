@@ -5,8 +5,8 @@ const tmdbKEY = "&api_key=a8b72166f37f46eaccf6cb81bbbca4c1";
 const genreURL = "https://api.themoviedb.org/3/genre/";
 // eslint-disable-next-line
 const utellyKEY = "84d184dfd2msh6b5924af4ec8de5p14dfb2jsn75fb3b8d9b09";
-const connerKEY = "9KBNrYyc6smshwxvf4gIpT7UMF7Ep19W8h3jsnGfSntcS9oioI";
-var returnObject = {};
+//const connerKEY = "9KBNrYyc6smshwxvf4gIpT7UMF7Ep19W8h3jsnGfSntcS9oioI";
+var returnObject = [];
 
 export default {
   tmdbSearch: function(selectedOption, query) {
@@ -23,30 +23,29 @@ export default {
         "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=" +
           query +
           "&country=us",
-        { headers: { "X-RapidAPI-Key": connerKEY } }
+        { headers: { "X-RapidAPI-Key": utellyKEY } }
       )
       .then(function(data) {
-        //var returnObject = {};
-        returnObject.urlArray = [];
-        returnObject.sourceName = [];
         console.log(data);
-        let locations = data.data.results[0].locations;
 
-        for (let i = 0; i < locations.length; i++) {
-          if (services.includes(locations[i].display_name)) {
-            returnObject.urlArray.push(locations[i].url);
-            returnObject.sourceName.push(locations[i].display_name);
-            console.log(returnObject.urlArray);
+        var showLocations = [];
+        for (var i = 0; i < data.data.results.length; i++) {
+          returnObject[i] = {};
+          returnObject[i].showName = "";
+          returnObject[i].urlArray = [];
+          returnObject[i].sourceName = [];
+          showLocations[i] = data.data.results[i].locations;
+
+          for (var j = 0; j < showLocations[i].length; j++) {
+            if (services.includes(showLocations[i][j].display_name)) {
+              returnObject[i].showName = data.data.results[i].name;
+              returnObject[i].urlArray.push(showLocations[i][j].url);
+              returnObject[i].sourceName.push(showLocations[i][j].display_name);
+            }
           }
         }
-
-        for (let i = 0; i < locations.length; i++) {
-          if (services.includes(locations[i].display_name)) {
-            returnObject.title = query;
-            console.log(returnObject);
-            return returnObject;
-          }
-        }
+        console.log(returnObject);
+        return returnObject;
       });
   }
 };
