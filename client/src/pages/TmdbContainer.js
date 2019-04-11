@@ -125,6 +125,13 @@ class TmdbContainer extends Component {
   // When the form is submitted, search the tMDB API for the value of `this.state.search`
 
   handleFormSubmit = event => {
+    state = {
+      selectedOption: "tv",
+      genres: [],
+      user: null,
+      result: [],
+      search: ""
+    };
     event.preventDefault();
     this.movieSearch(this.state.search, this.props.userServices);
   };
@@ -144,19 +151,19 @@ class TmdbContainer extends Component {
             {this.state.result[i].name ||
             this.state.result[i].title ||
             returnObject[i].showName ? (
-        <MDBAnimation type="fadeIn">
-              <MovieDetails
-                name={this.state.result[i].name || this.state.result[i].title}
-                src={this.state.result[i].poster_path}
-                genre={this.state.genres[i]}
-                released={
-                  this.state.result[i].first_air_date ||
-                  this.state.result[i].release_date
-                }
-                urlArray={returnObject[i].urlArray}
-                sourceName={returnObject[i].sourceName}
-              />
-        </MDBAnimation>
+              <MDBAnimation type="fadeIn">
+                <MovieDetails
+                  name={this.state.result[i].name || this.state.result[i].title}
+                  src={this.state.result[i].poster_path}
+                  genre={this.state.genres[i]}
+                  released={
+                    this.state.result[i].first_air_date ||
+                    this.state.result[i].release_date
+                  }
+                  urlArray={returnObject[i].urlArray}
+                  sourceName={returnObject[i].sourceName}
+                />
+              </MDBAnimation>
             ) : (
               <h3>No Results to Display</h3>
             )}
