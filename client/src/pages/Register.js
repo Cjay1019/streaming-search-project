@@ -40,6 +40,11 @@ class Register extends Component {
       .catch(error => {
         this.setState({ email: "", password: "" });
         switch (error.code) {
+          case "auth/invalid-email":
+            this.setState({
+              error: "This email address is already in use by another account."
+            });
+            break;
           case "auth/email-already-in-use":
             this.setState({
               error: "This email address is already in use by another account."
