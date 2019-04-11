@@ -30,6 +30,7 @@ export default {
     );
   },
   utellySearch: (query, services) => {
+    returnObject = [];
     return axios
       .get(
         "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=" +
