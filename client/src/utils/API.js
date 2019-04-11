@@ -56,7 +56,7 @@ export default {
             }
           }
         }
-
+        //Removes items in returnObject array that are null
         returnObject = removeFalsy(returnObject);
 
         console.log(returnObject);
