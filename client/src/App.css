@@ -8,3 +8,16 @@
 .modalZ {
   z-index: 9999 !important;
 }
+
+card-header {
+  border: 1px solid rgb(0, 187, 211);
+}
+.card-body {
+  color: #fff;
+  background-color: #232323;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff,
+    0 0 5px rgb(0, 187, 211), 0 0 5px rgb(0, 187, 211),
+    0 0 25px rgb(0, 187, 211), 0 0 40px rgb(0, 187, 211),
+    0 0 60px rgb(0, 187, 211);
+  margin-bottom: 10px;
+}

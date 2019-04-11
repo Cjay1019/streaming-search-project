@@ -17,7 +17,6 @@ function MovieDetails(props) {
   return (
     <div className="container">
       <div className="text-center" />
-
       <div className="row">
         <div className="col-sm-8">
           <MDBView hover zoom>

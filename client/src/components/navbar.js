@@ -18,7 +18,7 @@ const linksStyle = {
 };
 // --------------------------------------------------------
 
-class Navbar extends React.Component {
+class Navbar extends Component {
   render() {
     return (
       <div>

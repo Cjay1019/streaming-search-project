@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { MDBAnimation } from "mdbreact";
 import auth from "./utils/firebase";
 import TmdbContainer from "./pages/TmdbContainer";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";

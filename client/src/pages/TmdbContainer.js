@@ -125,13 +125,6 @@ class TmdbContainer extends Component {
   // When the form is submitted, search the tMDB API for the value of `this.state.search`
 
   handleFormSubmit = event => {
-    state = {
-      selectedOption: "tv",
-      genres: [],
-      user: null,
-      result: [],
-      search: ""
-    };
     event.preventDefault();
     this.movieSearch(this.state.search, this.props.userServices);
   };
