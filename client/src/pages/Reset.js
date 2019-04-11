@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import auth from "../utils/firebase";
-import { MDBAlert } from "mdbreact";
+import { MDBAlert, MDBBtn } from "mdbreact";
 
 class Reset extends Component {
   state = {
@@ -80,13 +80,13 @@ class Reset extends Component {
             placeholder="E-mail"
           />
 
-          <button
+          <MDBBtn
             onClick={this.handleFormSubmit}
-            className="btn btn-info btn-block my-4"
+            className="btn-rounded btn blue-gradient btn-outline-info waves-effect cyan-text"
             type="submit"
           >
             Submit
-          </button>
+          </MDBBtn>
         </form>
         {this.alertHandler()}
       </Container>
