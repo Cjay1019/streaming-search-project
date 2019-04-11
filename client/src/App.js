@@ -113,14 +113,12 @@ class App extends Component {
   render() {
     return (
       <div className="appBody">
-        {/* <MDBAnimation type="fadeInUp" delay="1s"> */}
         <Navbar
           user={this.state.user}
           currentName={this.state.currentName}
           modalClose={this.modalClose}
           renderBtn={this.renderBtn}
         />
-        {/* </MDBAnimation> */}
         <Router>
           <Switch>
             <Route

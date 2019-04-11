@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Modal from "./Modal";
+import BG from "../img/streamingHeader.png";
 
 // --------------------------------------------------------
 // styling
 const navStyle = {
-  backgroundImage: "url('//i.imgur.com/mjWffKU.png')",
+  backgroundImage: `url(${BG})`,
 
   backgroundSize: "contain",
   minHeight: "20em",
