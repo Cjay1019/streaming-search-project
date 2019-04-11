@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Container from "../components/Container";
 import auth from "../utils/firebase";
 import axios from "axios";
-import { MDBAlert } from "mdbreact";
+import { MDBAlert, MDBBtn } from "mdbreact";
 
 class Register extends Component {
   state = {
@@ -119,13 +119,13 @@ class Register extends Component {
             placeholder="Password"
           />
 
-          <button
+          <MDBBtn
             onClick={this.handleFormSubmit}
             className="btn btn-info btn-rounded my-4 blue-gradient btn-outline-info waves-effect"
             type="submit"
           >
             Register
-          </button>
+          </MDBBtn>
           <p>
             Already a member?
             {/* eslint-disable-next-line */}

@@ -13,11 +13,6 @@ if (process.env.NODE_ENV === "production") {
   console.log("env success");
 }
 
-// Define API routes here
-
-// Send every other request to the React app
-// Define any API routes before this runs
-
 require("./routes/index.js")(app);
 
 app.get("*", (req, res) => {

@@ -18,7 +18,7 @@ const linksStyle = {
 };
 // --------------------------------------------------------
 
-class Navbar extends React.Component {
+class Navbar extends Component {
   render() {
     return (
       <div>
@@ -32,7 +32,6 @@ class Navbar extends React.Component {
           <div className="linksContainer" style={linksStyle}>
             <ul className="navbar-nav mr-auto">
               <div>
-                {/* <li className="nav-item active"> */}
                 <Modal
                   currentName={this.props.currentName}
                   modalClose={this.props.modalClose}
@@ -40,10 +39,6 @@ class Navbar extends React.Component {
                 >
                   {this.props.renderBtn()}
                 </Modal>
-
-                {/* </li> */}
-                {/* <li className="nav-item active"> */}
-                {/* </li> */}
               </div>
             </ul>
           </div>

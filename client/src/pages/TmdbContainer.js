@@ -28,22 +28,17 @@ class TmdbContainer extends Component {
   };
 
   movieSearch = (query, services) => {
-    var newState = {};
+    let newState = {};
     newState.selectedOption = this.state.selectedOption;
     newState.search = this.state.search;
     newState.genres = [];
     newState.result = [];
 
-    var movieGenreIDs = [];
+    let movieGenreIDs = [];
     API.utellySearch(query, services).then(res => {
-      console.log(this.state.selectedOption);
-
       returnObject.forEach((element, i) => {
-        console.log(element);
-
         API.tmdbSearch(this.state.selectedOption, element.showName)
           .then(movie => {
-            console.log(movie);
             if (
               movie.data.results.length === 0 ||
               movie.data.results[0].length === 0
@@ -58,12 +53,11 @@ class TmdbContainer extends Component {
 
               movieGenreIDs[i] = movie.data.results[0].genre_ids;
             }
-            //this.filterData(newState);
           })
           .then(() => {
             API.genreList(this.state.selectedOption, element.showName).then(
               genre => {
-                var genreList = [];
+                let genreList = [];
 
                 if (movieGenreIDs[i] !== undefined) {
                   for (let j = 0; j < genre.data.genres.length; j++) {
@@ -74,19 +68,12 @@ class TmdbContainer extends Component {
 
                   if (genreList.length > 0) {
                     newState.genres[i] = genreList;
-                    console.log(newState.genres[i]);
                   }
                 }
                 if (genreList.length < 1) {
                   genreList[0] = "N/A";
-                  console.log(genreList);
                   newState.genres[i] = genreList;
                 }
-                //this.filterData(newState);
-                console.log(newState);
-
-                //this.setState(newState);
-                //console.log(this.state);
               }
             );
           });
@@ -98,20 +85,11 @@ class TmdbContainer extends Component {
       () => {
         setTimeout(() => {
           this.setState(() => newState);
-          console.log(this.state);
-        }, 5000);
+        }, 2000);
       }
     );
   };
-  /*
-  filterData = newState => {
-    //filter
-    newState.result = newState.result.filter(n => n);
-    newState.genres = newState.genres.filter(n => n);
-    //this.setState(newState);
-    //console.log(this.state);
-  };
-  */
+
   // handle input for the ui
   handleInputChange = event => {
     event.preventDefault();
@@ -132,35 +110,41 @@ class TmdbContainer extends Component {
   // setting up tmdb container with all the components made card, col, row, etc
   render() {
     //Gets movie details for each result in Utelly
-    var movieDetailElements = [];
+    let movieDetailElements = [];
     for (let i = 0; i < this.state.result.length; i++) {
       movieDetailElements.push(
-        <Col size="md-12" key={returnObject.showName}>
-          <Card
-            heading={
-              returnObject[i].showName || "Search for a Movie or TV Show"
-            }
-          >
-            {this.state.result[i].name ||
-            this.state.result[i].title ||
-            returnObject[i].showName ? (
-        <MDBAnimation type="fadeIn">
-              <MovieDetails
-                name={this.state.result[i].name || this.state.result[i].title}
-                src={this.state.result[i].poster_path}
-                genre={this.state.genres[i]}
-                released={
-                  this.state.result[i].first_air_date ||
-                  this.state.result[i].release_date
-                }
-                urlArray={returnObject[i].urlArray}
-                sourceName={returnObject[i].sourceName}
-              />
-        </MDBAnimation>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Card>
+        <Col size="md-12" customClass="p-0 mt-4" key={returnObject.showName}>
+          <MDBAnimation type="fadeInUp">
+            <Card
+              heading={
+                returnObject[i].showName || "Search for a Movie or TV Show"
+              }
+            >
+              {this.state.result[i].name ||
+              this.state.result[i].title ||
+              returnObject[i].showName ? (
+                <MDBAnimation type="fadeIn">
+                  <MovieDetails
+                    selectedOption={this.state.selectedOption}
+                    id={this.state.result[i].id}
+                    name={
+                      this.state.result[i].name || this.state.result[i].title
+                    }
+                    src={this.state.result[i].poster_path}
+                    genre={this.state.genres[i]}
+                    released={
+                      this.state.result[i].first_air_date ||
+                      this.state.result[i].release_date
+                    }
+                    urlArray={returnObject[i].urlArray}
+                    sourceName={returnObject[i].sourceName}
+                  />
+                </MDBAnimation>
+              ) : (
+                <h3>No Results to Display</h3>
+              )}
+            </Card>
+          </MDBAnimation>
         </Col>
       );
     }

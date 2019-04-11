@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import auth from "../utils/firebase";
-import { MDBAlert } from "mdbreact";
+import { MDBAlert, MDBBtn } from "mdbreact";
 
 class SignIn extends Component {
   state = {
@@ -95,13 +95,13 @@ class SignIn extends Component {
             </div>
           </div>
 
-          <button
+          <MDBBtn
             onClick={this.handleFormSubmit}
             className="btn btn-info btn-rounded my-4 blue-gradient btn-outline-info waves-effect"
             type="submit"
           >
             Sign in
-          </button>
+          </MDBBtn>
 
           <p className="px-1">
             Not a member?
