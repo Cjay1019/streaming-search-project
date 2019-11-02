@@ -9,7 +9,7 @@
     "express": "^4.16.4",
     "firebase": "^5.9.2",
     "mdbreact": "^4.11.1",
-    "mongoose": "^5.4.22",
+    "mongoose": "^5.7.5",
     "omdb": "^0.8.0",
     "unirest": "^0.6.0"
   },
