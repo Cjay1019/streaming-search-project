@@ -6,7 +6,7 @@
     "axios": "^0.18.0",
     "cross-env": "^5.2.0",
     "dotenv": "^7.0.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "firebase": "^5.9.2",
     "mdbreact": "^4.11.1",
     "mongoose": "^5.4.22",
